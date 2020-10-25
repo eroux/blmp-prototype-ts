@@ -1,2 +1,3 @@
-# blmp-prototype-ts
-TS prototype of BLMP
+# BLMP Prototype
+
+yeah!

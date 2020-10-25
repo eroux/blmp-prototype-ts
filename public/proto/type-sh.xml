@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ns0="http://purl.bdrc.io/ontology/shapes/core/"
+         xmlns:ns1="http://www.w3.org/ns/shacl#"
+         xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+
+  <rdf:Description rdf:about="http://purl.bdrc.io/ontology/shapes/core/EntityShape">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <ns0:nodeShapeType rdf:resource="http://purl.bdrc.io/ontology/shapes/core/FacetShape"/>
+    <ns1:property>
+      <ns1:PropertyShape rdf:about="http://purl.bdrc.io/ontology/shapes/core/EntityShape-skos_prefLabel">
+        <ns1:message xml:lang="en">each Entity resource must have at least one skos:prefLabel and each must be a unique language</ns1:message>
+        <ns1:path>
+          <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#prefLabel">
+            <skos:prefLabel xml:lang="en">Pref. Label</skos:prefLabel>
+          </rdf:Description>
+        </ns1:path>
+
+        <ns1:datatype rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+        <ns1:languageIn>
+          <rdf:Description>
+            <rdf:first>en</rdf:first>
+            <rdf:rest>
+              <rdf:Description>
+                <rdf:first>zh</rdf:first>
+                <rdf:rest>
+                  <rdf:Description>
+                    <rdf:first>bo</rdf:first>
+                    <rdf:rest>
+                      <rdf:Description>
+                        <rdf:first>bo-x-ewts</rdf:first>
+                        <rdf:rest>
+                          <rdf:Description>
+                            <rdf:first>km-x-femc</rdf:first>
+                            <rdf:rest>
+                              <rdf:Description>
+                                <rdf:first>km</rdf:first>
+                                <rdf:rest>
+                                  <rdf:Description>
+                                    <rdf:first>fr</rdf:first>
+                                    <rdf:rest>
+                                      <rdf:Description>
+                                        <rdf:first>km-x-bdrc</rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                      </rdf:Description>
+                                    </rdf:rest>
+
+                                  </rdf:Description>
+                                </rdf:rest>
+
+                              </rdf:Description>
+                            </rdf:rest>
+
+                          </rdf:Description>
+                        </rdf:rest>
+
+                      </rdf:Description>
+                    </rdf:rest>
+
+                  </rdf:Description>
+                </rdf:rest>
+
+              </rdf:Description>
+            </rdf:rest>
+
+          </rdf:Description>
+        </ns1:languageIn>
+
+        <ns1:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ns1:minCount>
+        <ns1:uniqueLang rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ns1:uniqueLang>
+      </ns1:PropertyShape>
+    </ns1:property>
+
+    <ns1:property>
+      <ns1:PropertyShape rdf:about="http://purl.bdrc.io/ontology/shapes/core/EntityShape-skos_altLabel">
+        <ns1:message xml:lang="en">each Entity can have zero or more skos:altLabel</ns1:message>
+        <ns1:path>
+          <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#altLabel">
+            <skos:prefLabel xml:lang="en">Alt. Label</skos:prefLabel>
+          </rdf:Description>
+        </ns1:path>
+
+        <ns1:datatype rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+      </ns1:PropertyShape>
+    </ns1:property>
+
+    <ns1:targetClass rdf:resource="http://purl.bdrc.io/ontology/core/Entity"/>
+  </rdf:Description>
+
+</rdf:RDF>
