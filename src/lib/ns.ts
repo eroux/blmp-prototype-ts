@@ -44,13 +44,13 @@ export const prefixToURI: {[key:string]: string} = {
 }
 
 export const URItoPrefix: {[key:string]: string} = {}
-for (const [key, value] of Object.entries(prefixes)) {
-	URIs[value] = key
+for (const [prefix, uri] of Object.entries(prefixToURI)) {
+	URItoPrefix[prefix] = uri
 }
 
-export const setDefaultPrefixes: void = (s: rdf.Store) => {
-	for (const [key, value] of Object.entries(prefixes)) {
-		s.setPrefixForURI(key, value)
+export const setDefaultPrefixes = (s: rdf.Store): void => {
+	for (const [prefix, uri] of Object.entries(prefixToURI)) {
+		s.setPrefixForURI(prefix, uri)
 	}
 }
 

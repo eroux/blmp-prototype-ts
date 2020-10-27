@@ -4,10 +4,14 @@ import NodeShape from './NodeShape'
 import AddTodo from '../containers/AddTodo'
 import VisibleTodoList from '../containers/VisibleTodoList'
 import * as rdf from 'rdflib'
+import { NamedNode as NN } from 'rdflib'
+import { RDFResource } from '../lib/types'
+import * as ns from '../lib/ns'
 
 interface AppState {
 	loading: boolean,
-	data: string
+	rootShape?: RDFResource,
+  rootResource?: RDFResource
 }
 
 class App extends React.Component<{}, AppState> {
@@ -15,8 +19,7 @@ class App extends React.Component<{}, AppState> {
   constructor(props :any) {
     super(props);
     this.state = {
-      loading: true,
-      data: ''
+      loading: true
     };
   }
 
@@ -29,23 +32,30 @@ class App extends React.Component<{}, AppState> {
     const response = await fetch(url);
     const body = await response.text();
     let store: rdf.Store = rdf.graph();
-	rdf.parse(body, store, rdf.Store.defaultGraphURI, 'text/turtle');
+	  rdf.parse(body, store, rdf.Store.defaultGraphURI, 'text/turtle');
     return store;
   }
 
   async componentDidMount() {
     this.setState({ loading: true });
-    let store = await this.loadTtl("proto/type-sh.ttl")
-    let data = await this.loadTtl("proto/type-sh.ttl")
-    this.setState({ loading: false });
-    this.printStore(store)
+    let shStore = await this.loadTtl("proto/type-sh.ttl")
+    let dataStore = await this.loadTtl("proto/data.ttl")
+    let rootShape: RDFResource = {
+    	"node": ns.BDS('EntityShape'),
+    	"store": shStore
+    }
+    let rootResource: RDFResource = {
+      "node": ns.BDR('R01'),
+      "store": dataStore
+    }
+    this.setState({ loading: false, rootShape: rootShape, rootResource: rootResource });
   }
 
   render() {
   	if (this.state.loading) {
       return <h2>Loading...</h2>;
     }
-    return <div><NodeShape/></div>;
+    return <div><NodeShape shape={this.state.rootShape} resource={this.state.rootResource}/></div>;
   }
 }
 
